@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/plugins/rdh_import">
+    <file alias="icon.png">icon.png</file>
+    <file alias="icon.svg">icon.svg</file>
+  </qresource>
+</RCC>

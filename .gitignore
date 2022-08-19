@@ -1,0 +1,7 @@
+__pycache__
+.qt_for_python
+.pytest_cache
+.DS_Store
+*.pyc
+coverage.xml
+.coverage

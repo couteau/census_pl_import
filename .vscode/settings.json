@@ -1,0 +1,14 @@
+{
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestPath": "~/anaconda3/envs/qgis_plugin/bin/pytest",
+    "python.linting.pylintPath": "~/anaconda3/envs/qgis_plugin/bin/pylint",
+    "python.formatting.autopep8Path": "~/anaconda3/envs/qgis_plugin/bin/autopep8",
+    "qtForPython.rcc.path": "/Users/stuart/anaconda3/envs/qgis_plugin/bin/pyrcc5",
+    "qtForPython.rcc.args": [
+        "-o \"${workspaceFolder}${pathSeparator}plugin${pathSeparator}${fileBasenameNoExtension}.py\""
+    ],
+    "qtForPython.uic.path": "/Users/stuart/anaconda3/envs/qgis_plugin/bin/pyuic5",
+    "qtForPython.uic.args": [
+        "-o \"${workspaceFolder}${pathSeparator}plugin${pathSeparator}ui${pathSeparator}${fileBasenameNoExtension}_base.py\""
+    ],
+}
