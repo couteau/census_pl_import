@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>465</width>
-    <height>326</height>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,13 +15,53 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
+    <widget class="QLabel" name="lbOutput">
+     <property name="text">
+      <string>Destination GeoPackage</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QgsFileWidget" name="fwOutput">
+     <property name="dialogTitle">
+      <string>Save GeoPackage</string>
+     </property>
+     <property name="filter">
+      <string>*.gpkg</string>
+     </property>
+     <property name="storageMode">
+      <enum>QgsFileWidget::SaveFile</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lbTableName">
+     <property name="text">
+      <string>Destination Table Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="edTableName"/>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbAppend">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Append new layer to existing GeoPackage</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
     <widget class="QLabel" name="lbPLFile">
      <property name="text">
       <string>Path to RDH PL file</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="3" column="1">
     <widget class="QgsFileWidget" name="fwPLFile">
      <property name="dialogTitle">
       <string>Select PL data file</string>
@@ -31,14 +71,14 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="4" column="0">
     <widget class="QLabel" name="lbDecennialYear">
      <property name="text">
       <string>Decennial Census Year</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="4" column="1">
     <widget class="QgsSpinBox" name="spDecennialYear">
      <property name="minimum">
       <number>1970</number>
@@ -54,14 +94,14 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="5" column="0">
     <widget class="QLabel" name="lbACSFile">
      <property name="text">
       <string>Path to RDH ACS file</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="5" column="1">
     <widget class="QgsFileWidget" name="fwACSFile">
      <property name="dialogTitle">
       <string>Select ACS data file</string>
@@ -71,14 +111,14 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="6" column="0">
     <widget class="QLabel" name="lbACSYear">
      <property name="text">
       <string>ACS Year</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="6" column="1">
     <widget class="QgsSpinBox" name="spACSYear">
      <property name="minimum">
       <number>1980</number>
@@ -94,44 +134,14 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="lbOutput">
-     <property name="text">
-      <string>Destination GeoPackage</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QgsFileWidget" name="fwOutput">
-     <property name="dialogTitle">
-      <string>Save GeoPackage</string>
-     </property>
-     <property name="filter">
-      <string>*.gpkg</string>
-     </property>
-     <property name="storageMode">
-      <enum>QgsFileWidget::SaveFile</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="lbTableName">
-     <property name="text">
-      <string>Destination Table Name</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QLineEdit" name="edTableName"/>
-   </item>
-   <item row="6" column="0" colspan="3">
+   <item row="8" column="0" colspan="2">
     <widget class="QCheckBox" name="cbKeepRDHdata">
      <property name="text">
       <string>Keep raw data tables</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="2">
+   <item row="9" column="0" colspan="2">
     <widget class="QCheckBox" name="cbAddToProject">
      <property name="text">
       <string>Add Imported Layer to Project</string>
@@ -141,7 +151,7 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0" colspan="2">
+   <item row="10" column="0" colspan="2">
     <widget class="QLabel" name="lbStatus">
      <property name="styleSheet">
       <string notr="true">QLabel {
@@ -153,7 +163,7 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0" colspan="2">
+   <item row="11" column="0" colspan="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -166,7 +176,7 @@
      </property>
     </spacer>
    </item>
-   <item row="11" column="0" colspan="2">
+   <item row="12" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

@@ -86,7 +86,7 @@ class DlgImport(Ui_dlgRDHImport, QDialog):
                 elif pl.featureCount() != acs.featureCount():
                     self.lbStatus.setText(self.tr('PL and ACS files have different numbers of features'))
 
-    def update_pl_file(self):
+    def update_pl_file(self, path):
         def layerName(t: GeographyType):
             if t == GeographyType.BLOCK:
                 return 'block'
@@ -102,6 +102,8 @@ class DlgImport(Ui_dlgRDHImport, QDialog):
             return 'rdh_pl_data'
 
         self.edTableName.setText(layerName(self.geography()))
+        self.cbAppend.setEnabled(pathlib.Path(path).resolve().exists())
+        self.cbAppend.setChecked(pathlib.Path(path).resolve().exists())
         self.check_files_match()
         self.update_decennial_year()
         self.update_buttons()

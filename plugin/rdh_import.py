@@ -213,7 +213,8 @@ class RDHImport:
                 pl_file, pl_year,
                 acs_file, acs_year,
                 dlg.geography(),
-                dlg.cbKeepRDHdata.isChecked()
+                dlg.cbKeepRDHdata.isChecked(),
+                not dlg.cbAppend.isChecked()
             )
             if task and dlg.cbAddToProject.isChecked():
                 task.on_finished = addToProject
