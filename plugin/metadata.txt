@@ -1,16 +1,16 @@
 # Mandatory items:
 [general]
-name=RDH Import
+name=PL 94-171 Import
 qgisMinimumVersion=3.18
-description=Import U.S. Census Data from RDH
+description=Import U.S. Census Data from Shapefile
 version=0.0.1-alpha
 author=Cryptodira
 email=stuart@cryptodira.org
 
-about=Import U.S. Census PL 94-171 data from Redistricting Data Hub to QGIS, renaming fields and adding multi-racial categories
+about=Import U.S. Census PL 94-171 data to QGIS, renaming fields and adding multi-racial categories
 
-tracker=https://github.com/couteau/rdh_import/issues
-repository=https://github.com/couteau/rdh_import
+tracker=https://github.com/couteau/census_pl_import/issues
+repository=https://github.com/couteau/census_pl_import
 # End of mandatory metadata
 
 # Recommended items:
@@ -22,8 +22,8 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=districting,redistricting,democracy
 
-homepage=https://github.com/couteau/rdh_import
-help=https://github.com/couteau/rdh_import
+homepage=https://github.com/couteau/census_pl_import
+help=https://github.com/couteau/census_pl_import
 icon=icon.png
 
 # experimental flag
