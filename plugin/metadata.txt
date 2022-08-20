@@ -9,8 +9,8 @@ email=stuart@cryptodira.org
 
 about=Import U.S. Census PL 94-171 data from Redistricting Data Hub to QGIS, renaming fields and adding multi-racial categories
 
-tracker=https://tracker
-repository=https://repo
+tracker=https://github.com/couteau/rdh_import/issues
+repository=https://github.com/couteau/rdh_import
 # End of mandatory metadata
 
 # Recommended items:
@@ -20,10 +20,10 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=districting,redistricting,democracy,gerrymandering
+tags=districting,redistricting,democracy
 
-homepage=https://home
-help=https://help
+homepage=https://github.com/couteau/rdh_import
+help=https://github.com/couteau/rdh_import
 icon=icon.png
 
 # experimental flag
