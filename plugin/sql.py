@@ -465,6 +465,7 @@ county_create_fields = """
         fid INTEGER PRIMARY KEY,
         {geoid_field} TEXT UNIQUE NOT NULL,
         statefp{pl_shortyear} TEXT NOT NULL,
+        countyfp{pl_shortyear} TEXT NOT NULL,
         name{pl_shortyear} TEXT
 """
 

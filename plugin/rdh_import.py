@@ -87,7 +87,7 @@ class RDHImport:
 
     @staticmethod
     def createLayerFromQuery(
-            task,  # pylint: disable=unused-argument
+            task: QgsTaskWrapper,
             out_path,
             table_name,
             geography,
@@ -97,41 +97,47 @@ class RDHImport:
             acs_year,
             keep):
 
-        with spatialite_connect(out_path) as db:
-            pl_shortyear = str(pl_year)[2:]
-            geoid_field = f'geoid{pl_shortyear}'
-            src_layer = pathlib.Path(pl_path).stem
-            if acs_path and acs_year:
-                cvap_layer = pathlib.Path(acs_path).stem
-
-            db.execute(f'CREATE INDEX {src_layer}_{geoid_field} ON {src_layer} ({geoid_field})')
-            if acs_path and acs_year:
-                db.execute(f'CREATE INDEX {cvap_layer}_{geoid_field} ON {cvap_layer} ({geoid_field})')
-
-            sql = create_sql(geography, table_name, geoid_field, pl_year, bool(acs_path), acs_year)
-            db.execute(sql)
-
-            crs = db.execute(
-                f'SELECT srs_id FROM gpkg_geometry_columns WHERE table_name = \'{src_layer}\'').fetchone()[0]
-            sql = f'SELECT gpkgAddGeometryColumn(\'{table_name}\', \'geom\', \'MULTIPOLYGON\', 0, 0, {crs})'
-            db.execute(sql)
-
-            sql = select_sql(
-                geography,
-                geoid_field,
-                src_layer,
-                pl_year,
-                pathlib.Path(acs_path).stem,
-                acs_year
-            )
-
-            sql = f'INSERT INTO {table_name} {sql}'
-            db.execute(sql)
-
-            if not keep:
-                db.execute(f'DROP TABLE {src_layer}')
+        try:
+            with spatialite_connect(out_path) as db:
+                pl_shortyear = str(pl_year)[2:]
+                geoid_field = f'geoid{pl_shortyear}'
+                src_layer = pathlib.Path(pl_path).stem
                 if acs_path and acs_year:
-                    db.execute(f'DROP TABLE {cvap_layer}')
+                    cvap_layer = pathlib.Path(acs_path).stem
+
+                db.execute(f'CREATE INDEX {src_layer}_{geoid_field} ON {src_layer} ({geoid_field})')
+                if acs_path and acs_year:
+                    db.execute(f'CREATE INDEX {cvap_layer}_{geoid_field} ON {cvap_layer} ({geoid_field})')
+
+                sql = create_sql(geography, table_name, geoid_field, pl_year, bool(acs_path), acs_year)
+                db.execute(sql)
+
+                crs = db.execute(
+                    f'SELECT srs_id FROM gpkg_geometry_columns WHERE table_name = \'{src_layer}\'').fetchone()[0]
+                sql = f'SELECT gpkgAddGeometryColumn(\'{table_name}\', \'geom\', \'MULTIPOLYGON\', 0, 0, {crs})'
+                db.execute(sql)
+
+                sql = select_sql(
+                    geography,
+                    geoid_field,
+                    src_layer,
+                    pl_year,
+                    pathlib.Path(acs_path).stem,
+                    acs_year
+                )
+
+                sql = f'INSERT INTO {table_name} {sql}'
+                db.execute(sql)
+
+                if not keep:
+                    db.execute(f'DROP TABLE {src_layer}')
+                    if acs_path and acs_year:
+                        db.execute(f'DROP TABLE {cvap_layer}')
+        except Exception as e:  # pylint: disable=broad-except
+            task.exception = e
+            return False
+
+        return True
 
     def importRDHData(self,  # pylint: disable=too-many-arguments
                       out_path: str, out_layer: str,
